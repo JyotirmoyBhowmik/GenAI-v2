@@ -1,0 +1,97 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Vector DB persistence
+data/chroma_db/
+data/vectordb/
+
+# Backups
+backups/
+*.backup
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# API keys and credentials
+*credentials*.json
+*token*.json
+*.pem
+*.key
+!*.key.template
+
+# Test coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Documentation builds
+docs/_build/
+
+# Model files (too large)
+*.bin
+*.onnx
+*.h5
+*.pb
+*.pt
+*.pth
+models/local/*.model
+
+# Generated data
+data/generated/
+data/cache/
+
+# PyQt UI compiled files
+*.pyc
+*.ui.py

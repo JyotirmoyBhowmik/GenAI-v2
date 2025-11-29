@@ -1,0 +1,398 @@
+# ============================================================
+# GenAI Platform - Divisions and Departments Configuration
+# ============================================================
+
+divisions:
+  
+  - id: "fmcg"
+    name: "FMCG"
+    display_name: "Fast Moving Consumer Goods"
+    description: "Consumer packaged goods division"
+    enabled: true
+    data_residency: "global"
+    vault_key_id: "vault_fmcg_key"
+    vector_namespace: "fmcg"
+    departments:
+      - id: "fmcg_hr"
+        name: "HR"
+        display_name: "Human Resources"
+        description: "HR department for FMCG division"
+        enabled: true
+        allowed_personas:
+          - "hr_assistant"
+          - "email_writer"
+        allowed_connectors:
+          - "hrms"
+          - "email"
+          - "files"
+        data_tags:
+          - "hr"
+          - "personnel"
+          - "confidential"
+          
+      - id: "fmcg_finance"
+        name: "Finance"
+        display_name: "Finance & Accounting"
+        description: "Finance department for FMCG division"
+        enabled: true
+        allowed_personas:
+          - "finance_analyst"
+          - "excel_expert"
+        allowed_connectors:
+          - "erp"
+          - "files"
+        data_tags:
+          - "finance"
+          - "accounting"
+          - "confidential"
+          
+      - id: "fmcg_sales"
+        name: "Sales"
+        display_name: "Sales & Distribution"
+        description: "Sales department for FMCG division"
+        enabled: true
+        allowed_personas:
+          - "sales_coach"
+          - "market_intel_bot"
+        allowed_connectors:
+          - "crm"
+          - "files"
+        data_tags:
+          - "sales"
+          - "customer"
+          
+      - id: "fmcg_marketing"
+        name: "Marketing"
+        display_name: "Marketing"
+        description: "Marketing department for FMCG division"
+        enabled: true
+        allowed_personas:
+          - "market_intel_bot"
+          - "email_writer"
+        allowed_connectors:
+          - "crm"
+          - "dms"
+          - "files"
+        data_tags:
+          - "marketing"
+          - "campaigns"
+  
+  - id: "manufacturing"
+    name: "Manufacturing"
+    display_name: "Manufacturing"
+    description: "Manufacturing and production division"
+    enabled: true
+    data_residency: "global"
+    vault_key_id: "vault_manufacturing_key"
+    vector_namespace: "manufacturing"
+    departments:
+      - id: "mfg_hr"
+        name: "HR"
+        display_name: "Human Resources"
+        description: "HR department for Manufacturing division"
+        enabled: true
+        allowed_personas:
+          - "hr_assistant"
+        allowed_connectors:
+          - "hrms"
+          - "files"
+        data_tags:
+          - "hr"
+          - "personnel"
+          
+      - id: "mfg_finance"
+        name: "Finance"
+        display_name: "Finance & Accounting"
+        description: "Finance department for Manufacturing division"
+        enabled: true
+        allowed_personas:
+          - "finance_analyst"
+          - "excel_expert"
+        allowed_connectors:
+          - "erp"
+          - "files"
+        data_tags:
+          - "finance"
+          
+      - id: "mfg_production"
+        name: "Production"
+        display_name: "Production & Operations"
+        description: "Production department"
+        enabled: true
+        allowed_personas:
+          - "mis_bot"
+          - "excel_expert"
+        allowed_connectors:
+          - "erp"
+          - "files"
+        data_tags:
+          - "production"
+          - "operations"
+          
+      - id: "mfg_supply_chain"
+        name: "Supply Chain"
+        display_name: "Supply Chain Management"
+        description: "Supply chain department"
+        enabled: true
+        allowed_personas:
+          - "mis_bot"
+        allowed_connectors:
+          - "erp"
+          - "files"
+        data_tags:
+          - "supply_chain"
+          - "logistics"
+  
+  - id: "hotel"
+    name: "Hotel"
+    display_name: "Hotel & Hospitality"
+    description: "Hotel and hospitality division"
+    enabled: true
+    data_residency: "global"
+    vault_key_id: "vault_hotel_key"
+    vector_namespace: "hotel"
+    departments:
+      - id: "hotel_hr"
+        name: "HR"
+        display_name: "Human Resources"
+        description: "HR department for Hotel division"
+        enabled: true
+        allowed_personas:
+          - "hr_assistant"
+        allowed_connectors:
+          - "hrms"
+          - "files"
+        data_tags:
+          - "hr"
+          
+      - id: "hotel_finance"
+        name: "Finance"
+        display_name: "Finance"
+        description: "Finance department for Hotel division"
+        enabled: true
+        allowed_personas:
+          - "finance_analyst"
+        allowed_connectors:
+          - "erp"
+          - "files"
+        data_tags:
+          - "finance"
+          
+      - id: "hotel_operations"
+        name: "Operations"
+        display_name: "Hotel Operations"
+        description: "Operations department"
+        enabled: true
+        allowed_personas:
+          - "mis_bot"
+        allowed_connectors:
+          - "crm"
+          - "files"
+        data_tags:
+          - "operations"
+          - "guest_services"
+          
+      - id: "hotel_customer_support"
+        name: "Customer Support"
+        display_name: "Customer Support"
+        description: "Customer support department"
+        enabled: true
+        allowed_personas:
+          - "email_writer"
+        allowed_connectors:
+          - "crm"
+          - "email"
+        data_tags:
+          - "customer_support"
+  
+  - id: "stationery"
+    name: "Stationery"
+    display_name: "Stationery"
+    description: "Stationery and office supplies division"
+    enabled: true
+    data_residency: "global"
+    vault_key_id: "vault_stationery_key"
+    vector_namespace: "stationery"
+    departments:
+      - id: "stat_hr"
+        name: "HR"
+        display_name: "Human Resources"
+        description: "HR department for Stationery division"
+        enabled: true
+        allowed_personas:
+          - "hr_assistant"
+        allowed_connectors:
+          - "hrms"
+          - "files"
+        data_tags:
+          - "hr"
+          
+      - id: "stat_finance"
+        name: "Finance"
+        display_name: "Finance"
+        description: "Finance department for Stationery division"
+        enabled: true
+        allowed_personas:
+          - "finance_analyst"
+        allowed_connectors:
+          - "erp"
+          - "files"
+        data_tags:
+          - "finance"
+          
+      - id: "stat_sales"
+        name: "Sales"
+        display_name: "Sales"
+        description: "Sales department"
+        enabled: true
+        allowed_personas:
+          - "sales_coach"
+        allowed_connectors:
+          - "crm"
+          - "files"
+        data_tags:
+          - "sales"
+  
+  - id: "retail"
+    name: "Retail"
+    display_name: "Retail"
+    description: "Retail operations division"
+    enabled: true
+    data_residency: "global"
+    vault_key_id: "vault_retail_key"
+    vector_namespace: "retail"
+    departments:
+      - id: "retail_hr"
+        name: "HR"
+        display_name: "Human Resources"
+        description: "HR department for Retail division"
+        enabled: true
+        allowed_personas:
+          - "hr_assistant"
+        allowed_connectors:
+          - "hrms"
+          - "files"
+        data_tags:
+          - "hr"
+          
+      - id: "retail_finance"
+        name: "Finance"
+        display_name: "Finance"
+        description: "Finance department for Retail division"
+        enabled: true
+        allowed_personas:
+          - "finance_analyst"
+        allowed_connectors:
+          - "erp"
+          - "files"
+        data_tags:
+          - "finance"
+          
+      - id: "retail_operations"
+        name: "Operations"
+        display_name: "Store Operations"
+        description: "Store operations department"
+        enabled: true
+        allowed_personas:
+          - "mis_bot"
+        allowed_connectors:
+          - "erp"
+          - "files"
+        data_tags:
+          - "operations"
+          - "store"
+  
+  - id: "corporate"
+    name: "Corporate"
+    display_name: "Corporate"
+    description: "Corporate headquarters division"
+    enabled: true
+    data_residency: "global"
+    vault_key_id: "vault_corporate_key"
+    vector_namespace: "corporate"
+    departments:
+      - id: "corp_hr"
+        name: "HR"
+        display_name: "Corporate HR"
+        description: "Corporate HR department"
+        enabled: true
+        allowed_personas:
+          - "hr_assistant"
+        allowed_connectors:
+          - "hrms"
+          - "dms"
+          - "email"
+          - "files"
+        data_tags:
+          - "hr"
+          - "corporate"
+          
+      - id: "corp_finance"
+        name: "Finance"
+        display_name: "Corporate Finance"
+        description: "Corporate finance department"
+        enabled: true
+        allowed_personas:
+          - "finance_analyst"
+          - "excel_expert"
+        allowed_connectors:
+          - "erp"
+          - "dms"
+          - "files"
+        data_tags:
+          - "finance"
+          - "corporate"
+          
+      - id: "corp_it"
+        name: "IT"
+        display_name: "Information Technology"
+        description: "IT department"
+        enabled: true
+        allowed_personas:
+          - "it_troubleshooter"
+          - "mis_bot"
+        allowed_connectors:
+          - "dms"
+          - "email"
+          - "files"
+        data_tags:
+          - "it"
+          - "systems"
+          
+      - id: "corp_admin"
+        name: "Admin"
+        display_name: "Administration"
+        description: "Admin department"
+        enabled: true
+        allowed_personas:
+          - "email_writer"
+          - "excel_expert"
+        allowed_connectors:
+          - "dms"
+          - "email"
+          - "files"
+        data_tags:
+          - "admin"
+          
+      - id: "corp_mis"
+        name: "MIS"
+        display_name: "Management Information Systems"
+        description: "MIS department"
+        enabled: true
+        allowed_personas:
+          - "mis_bot"
+          - "excel_expert"
+        allowed_connectors:
+          - "erp"
+          - "crm"
+          - "hrms"
+          - "dms"
+          - "files"
+        data_tags:
+          - "mis"
+          - "reporting"
+
+# Default settings
+defaults:
+  division: "corporate"
+  department: "corp_admin"

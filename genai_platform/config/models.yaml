@@ -1,0 +1,335 @@
+# ============================================================
+# GenAI Platform - Model Catalog Configuration
+# ============================================================
+
+models:
+  
+  # ============================================================
+  # Cloud Models - OpenAI
+  # ============================================================
+  
+  - id: "gpt-4"
+    name: "GPT-4"
+    provider: "openai"
+    type: "cloud"
+    category: "llm"
+    endpoint: "https://api.openai.com/v1"
+    model_name: "gpt-4"
+    enabled: true
+    max_tokens: 8192
+    supports_streaming: true
+    pricing:
+      input_per_1k_tokens: 0.03
+      output_per_1k_tokens: 0.06
+      currency: "USD"
+    capabilities:
+      - "text_generation"
+      - "chat"
+      - "reasoning"
+      - "code_generation"
+    
+  - id: "gpt-4-turbo"
+    name: "GPT-4 Turbo"
+    provider: "openai"
+    type: "cloud"
+    category: "llm"
+    endpoint: "https://api.openai.com/v1"
+    model_name: "gpt-4-turbo-preview"
+    enabled: true
+    max_tokens: 128000
+    supports_streaming: true
+    pricing:
+      input_per_1k_tokens: 0.01
+      output_per_1k_tokens: 0.03
+      currency: "USD"
+    capabilities:
+      - "text_generation"
+      - "chat"
+      - "reasoning"
+      - "code_generation"
+  
+  - id: "gpt-3.5-turbo"
+    name: "GPT-3.5 Turbo"
+    provider: "openai"
+    type: "cloud"
+    category: "llm"
+    endpoint: "https://api.openai.com/v1"
+    model_name: "gpt-3.5-turbo"
+    enabled: true
+    max_tokens: 4096
+    supports_streaming: true
+    pricing:
+      input_per_1k_tokens: 0.0005
+      output_per_1k_tokens: 0.0015
+      currency: "USD"
+    capabilities:
+      - "text_generation"
+      - "chat"
+  
+  # ============================================================
+  # Cloud Models - Google Gemini
+  # ============================================================
+  
+  - id: "gemini-pro"
+    name: "Gemini Pro"
+    provider: "google"
+    type: "cloud"
+    category: "llm"
+    endpoint: "https://generativelanguage.googleapis.com/v1"
+    model_name: "gemini-pro"
+    enabled: true
+    max_tokens: 32768
+    supports_streaming: true
+    pricing:
+      input_per_1k_tokens: 0.00025
+      output_per_1k_tokens: 0.0005
+      currency: "USD"
+    capabilities:
+      - "text_generation"
+      - "chat"
+      - "reasoning"
+  
+  - id: "gemini-ultra"
+    name: "Gemini Ultra"
+    provider: "google"
+    type: "cloud"
+    category: "llm"
+    endpoint: "https://generativelanguage.googleapis.com/v1"
+    model_name: "gemini-ultra"
+    enabled: false  # Requires approval
+    max_tokens: 32768
+    supports_streaming: true
+    pricing:
+      input_per_1k_tokens: 0.001
+      output_per_1k_tokens: 0.002
+      currency: "USD"
+    capabilities:
+      - "text_generation"
+      - "chat"
+      - "reasoning"
+      - "multimodal"
+  
+  # ============================================================
+  # Cloud Models - Anthropic Claude
+  # ============================================================
+  
+  - id: "claude-3-opus"
+    name: "Claude 3 Opus"
+    provider: "anthropic"
+    type: "cloud"
+    category: "llm"
+    endpoint: "https://api.anthropic.com/v1"
+    model_name: "claude-3-opus-20240229"
+    enabled: true
+    max_tokens: 200000
+    supports_streaming: true
+    pricing:
+      input_per_1k_tokens: 0.015
+      output_per_1k_tokens: 0.075
+      currency: "USD"
+    capabilities:
+      - "text_generation"
+      - "chat"
+      - "reasoning"
+      - "long_context"
+  
+  - id: "claude-3-sonnet"
+    name: "Claude 3 Sonnet"
+    provider: "anthropic"
+    type: "cloud"
+    category: "llm"
+    endpoint: "https://api.anthropic.com/v1"
+    model_name: "claude-3-sonnet-20240229"
+    enabled: true
+    max_tokens: 200000
+    supports_streaming: true
+    pricing:
+      input_per_1k_tokens: 0.003
+      output_per_1k_tokens: 0.015
+      currency: "USD"
+    capabilities:
+      - "text_generation"
+      - "chat"
+      - "reasoning"
+  
+  # ============================================================
+  # Cloud Models - Grok
+  # ============================================================
+  
+  - id: "grok-1"
+    name: "Grok-1"
+    provider: "xai"
+    type: "cloud"
+    category: "llm"
+    endpoint: "https://api.x.ai/v1"
+    model_name: "grok-1"
+    enabled: true
+    max_tokens: 8192
+    supports_streaming: true
+    pricing:
+      input_per_1k_tokens: 0.01
+      output_per_1k_tokens: 0.02
+      currency: "USD"
+    capabilities:
+      - "text_generation"
+      - "chat"
+      - "reasoning"
+  
+  # ============================================================
+  # Local Models - Ollama
+  # ============================================================
+  
+  - id: "llama3"
+    name: "Llama 3"
+    provider: "ollama"
+    type: "local"
+    category: "llm"
+    endpoint: "http://localhost:11434"
+    model_name: "llama3:latest"
+    enabled: true
+    max_tokens: 8192
+    supports_streaming: true
+    pricing:
+      input_per_1k_tokens: 0.0
+      output_per_1k_tokens: 0.0
+      currency: "USD"
+    capabilities:
+      - "text_generation"
+      - "chat"
+      - "reasoning"
+  
+  - id: "mistral"
+    name: "Mistral"
+    provider: "ollama"
+    type: "local"
+    category: "llm"
+    endpoint: "http://localhost:11434"
+    model_name: "mistral:latest"
+    enabled: true
+    max_tokens: 8192
+    supports_streaming: true
+    pricing:
+      input_per_1k_tokens: 0.0
+      output_per_1k_tokens: 0.0
+      currency: "USD"
+    capabilities:
+      - "text_generation"
+      - "chat"
+  
+  - id: "mixtral"
+    name: "Mixtral 8x7B"
+    provider: "ollama"
+    type: "local"
+    category: "llm"
+    endpoint: "http://localhost:11434"
+    model_name: "mixtral:latest"
+    enabled: true
+    max_tokens: 32768
+    supports_streaming: true
+    pricing:
+      input_per_1k_tokens: 0.0
+      output_per_1k_tokens: 0.0
+      currency: "USD"
+    capabilities:
+      - "text_generation"
+      - "chat"
+      - "reasoning"
+  
+  # ============================================================
+  # Embedding Models
+  # ============================================================
+  
+  - id: "text-embedding-3-large"
+    name: "OpenAI Text Embedding 3 Large"
+    provider: "openai"
+    type: "cloud"
+    category: "embedding"
+    endpoint: "https://api.openai.com/v1"
+    model_name: "text-embedding-3-large"
+    enabled: true
+    embedding_dimensions: 3072
+    pricing:
+      input_per_1k_tokens: 0.00013
+      currency: "USD"
+    capabilities:
+      - "text_embedding"
+  
+  - id: "sbert"
+    name: "Sentence-BERT"
+    provider: "sentence-transformers"
+    type: "local"
+    category: "embedding"
+    model_name: "all-MiniLM-L6-v2"
+    enabled: true
+    embedding_dimensions: 384
+    pricing:
+      input_per_1k_tokens: 0.0
+      currency: "USD"
+    capabilities:
+      - "text_embedding"
+      - "semantic_search"
+  
+  # ============================================================
+  # Special Purpose Models
+  # ============================================================
+  
+  - id: "pii-classifier"
+    name: "PII Classifier"
+    provider: "local"
+    type: "local"
+    category: "classification"
+    model_name: "pii-detection-model"
+    enabled: true
+    pricing:
+      input_per_1k_tokens: 0.0
+      currency: "USD"
+    capabilities:
+      - "pii_detection"
+      - "classification"
+  
+  - id: "summarizer"
+    name: "Local Summarizer"
+    provider: "local"
+    type: "local"
+    category: "summarization"
+    model_name: "facebook/bart-large-cnn"
+    enabled: true
+    pricing:
+      input_per_1k_tokens: 0.0
+      currency: "USD"
+    capabilities:
+      - "summarization"
+  
+  - id: "ocr"
+    name: "Tesseract OCR"
+    provider: "tesseract"
+    type: "local"
+    category: "ocr"
+    enabled: true
+    pricing:
+      input_per_1k_tokens: 0.0
+      currency: "USD"
+    capabilities:
+      - "ocr"
+      - "image_to_text"
+
+# Model selection rules
+selection_rules:
+  
+  # Default model preferences by persona
+  persona_preferences:
+    hr_assistant: ["gpt-4", "claude-3-sonnet", "llama3"]
+    finance_analyst: ["gpt-4", "claude-3-opus", "mistral"]
+    sales_coach: ["gpt-4-turbo", "claude-3-sonnet", "llama3"]
+    mis_bot: ["gpt-3.5-turbo", "mistral", "llama3"]
+    market_intel_bot: ["claude-3-opus", "gpt-4", "mixtral"]
+    excel_expert: ["gpt-4", "claude-3-sonnet", "llama3"]
+    email_writer: ["gpt-3.5-turbo", "claude-3-sonnet", "llama3"]
+    it_troubleshooter: ["gpt-4", "claude-3-opus", "mixtral"]
+  
+  # Default embedding model
+  default_embedding: "sbert"
+  
+  # Cost-based routing
+  use_local_when_possible: true
+  fallback_to_cloud: true

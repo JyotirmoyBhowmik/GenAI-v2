@@ -1,0 +1,414 @@
+# ============================================================
+# GenAI Platform - Security and Compliance Policies
+# ============================================================
+
+# ============================================================
+# RBAC - Role-Based Access Control
+# ============================================================
+
+roles:
+  
+  - id: "super_admin"
+    name: "Super Admin"
+    description: "Full system access, can manage all divisions and configurations"
+    level: 0
+    permissions:
+      - "manage_all_divisions"
+      - "manage_users"
+      - "manage_roles"
+      - "configure_system"
+      - "view_all_data"
+      - "manage_mdm"
+      - "manage_plugins"
+      - "view_audit_logs"
+      - "manage_backups"
+      - "manage_billing"
+    restrictions: []
+  
+  - id: "division_admin"
+    name: "Division Admin"
+    description: "Can manage a specific division and its departments"
+    level: 1
+    permissions:
+      - "manage_division"
+      - "manage_division_users"
+      - "manage_division_departments"
+      - "view_division_data"
+      - "configure_division"
+      - "view_division_audit_logs"
+      - "view_division_billing"
+    restrictions:
+      - "cannot_access_other_divisions"
+      - "cannot_modify_system_config"
+  
+  - id: "department_admin"
+    name: "Department Admin"
+    description: "Can manage a specific department within a division"
+    level: 2
+    permissions:
+      - "manage_department"
+      - "manage_department_users"
+      - "view_department_data"
+      - "configure_department"
+      - "view_department_audit_logs"
+    restrictions:
+      - "cannot_access_other_departments"
+      - "cannot_access_other_divisions"
+  
+  - id: "analyst"
+    name: "Analyst"
+    description: "Can analyze data and generate reports within their department"
+    level: 3
+    permissions:
+      - "query_department_data"
+      - "generate_reports"
+      - "use_all_personas"
+      - "access_connectors"
+      - "ingest_files"
+    restrictions:
+      - "cannot_view_pii_unless_authorized"
+      - "cannot_access_other_departments"
+      - "read_only_access"
+  
+  - id: "viewer"
+    name: "Viewer"
+    description: "Read-only access to department data and reports"
+    level: 4
+    permissions:
+      - "view_department_data"
+      - "view_reports"
+      - "basic_queries"
+    restrictions:
+      - "read_only"
+      - "cannot_ingest_data"
+      - "limited_personas"
+  
+  - id: "approver"
+    name: "Approver"
+    description: "Can approve cross-division requests and policy changes"
+    level: 2
+    permissions:
+      - "approve_cross_division_requests"
+      - "approve_policy_changes"
+      - "view_approval_queue"
+    restrictions:
+      - "approval_only_role"
+
+# ============================================================
+# ABAC - Attribute-Based Access Control
+# ============================================================
+
+abac_policies:
+  
+  - name: "Division Isolation"
+    description: "Users can only access data from their assigned division"
+    rule:
+      type: "must_match"
+      user_attribute: "division"
+      resource_attribute: "division"
+    enforcement: "strict"
+    exceptions:
+      - "super_admin"
+      - "cross_division_approved_requests"
+  
+  - name: "Department Isolation"
+    description: "Users can only access data from their department unless elevated"
+    rule:
+      type: "must_match"
+      user_attribute: "department"
+      resource_attribute: "department"
+    enforcement: "default"
+    exceptions:
+      - "super_admin"
+      - "division_admin"
+      - "department_admin"
+  
+  - name: "Sensitivity Level Control"
+    description: "Access to sensitive data requires appropriate clearance"
+    rule:
+      type: "user_level_gte_resource_level"
+      user_attribute: "clearance_level"
+      resource_attribute: "sensitivity_level"
+    enforcement: "strict"
+    sensitivity_levels:
+      - "public"          # 0
+      - "internal"        # 1
+      - "confidential"    # 2
+      - "restricted"      # 3
+      - "highly_restricted"  # 4
+  
+  - name: "Location-Based Access"
+    description: "Certain data can only be accessed from specific locations"
+    rule:
+      type: "location_match"
+      user_attribute: "location"
+      resource_attribute: "allowed_locations"
+    enforcement: "optional"
+    enabled: false
+  
+  - name: "Time-Based Access"
+    description: "Restrict access during non-business hours for certain data"
+    rule:
+      type: "time_window"
+      allowed_hours: "09:00-18:00"
+      allowed_days: ["monday", "tuesday", "wednesday", "thursday", "friday"]
+    enforcement: "optional"
+    enabled: false
+  
+  - name: "Persona-Based Restrictions"
+    description: "Certain personas can only access specific data types"
+    rule:
+      type: "persona_data_match"
+      user_attribute: "active_persona"
+      resource_attribute: "allowed_personas"
+    enforcement: "default"
+
+# ============================================================
+# PII Detection and Redaction
+# ============================================================
+
+pii_policies:
+  
+  enabled: true
+  
+  detection:
+    methods:
+      - "regex"
+      - "ml_classification"
+      - "named_entity_recognition"
+    
+    pii_types:
+      - name: "email"
+        pattern: "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"
+        sensitivity: "medium"
+        
+      - name: "phone"
+        pattern: "\\+?[0-9]{1,4}[\\s.-]?\\(?[0-9]{1,5}\\)?[\\s.-]?[0-9]{1,5}[\\s.-]?[0-9]{1,9}"
+        sensitivity: "medium"
+        
+      - name: "ssn"
+        pattern: "\\b[0-9]{3}-[0-9]{2}-[0-9]{4}\\b"
+        sensitivity: "high"
+        
+      - name: "credit_card"
+        pattern: "\\b[0-9]{4}[\\s-]?[0-9]{4}[\\s-]?[0-9]{4}[\\s-]?[0-9]{4}\\b"
+        sensitivity: "high"
+        
+      - name: "passport"
+        pattern: "\\b[A-Z]{1,2}[0-9]{6,9}\\b"
+        sensitivity: "high"
+        
+      - name: "aadhaar"
+        pattern: "\\b[0-9]{4}\\s?[0-9]{4}\\s?[0-9]{4}\\b"
+        sensitivity: "high"
+        
+      - name: "pan"
+        pattern: "\\b[A-Z]{5}[0-9]{4}[A-Z]{1}\\b"
+        sensitivity: "high"
+  
+  redaction:
+    enabled: true
+    redaction_methods:
+      email: "mask_partial"        # user***@example.com
+      phone: "mask_middle"          # +91 ***** 1234
+      ssn: "mask_all"              # ***-**-****
+      credit_card: "mask_all"      # **** **** **** ****
+      passport: "mask_all"         # ********
+      aadhaar: "mask_middle"       # 1234 **** 5678
+      pan: "mask_middle"           # ABC**1234D
+    
+    context_window: 50  # Characters around PII to preserve for context
+
+# ============================================================
+# Data Masking Policies
+# ============================================================
+
+data_masking:
+  
+  enabled: true
+  
+  rules:
+    - name: "Salary Masking"
+      applies_to:
+        - "salary"
+        - "compensation"
+        - "bonus"
+      mask_for_roles:
+        - "viewer"
+        - "analyst"
+      mask_method: "range"  # Show salary range instead of exact value
+      
+    - name: "Customer Personal Data"
+      applies_to:
+        - "customer_email"
+        - "customer_phone"
+        - "customer_address"
+      mask_for_roles:
+        - "viewer"
+      mask_method: "partial"
+      
+    - name: "Financial Details"
+      applies_to:
+        - "account_number"
+        - "bank_details"
+      mask_for_roles:
+        - "viewer"
+        - "analyst"
+      mask_method: "full"
+
+# ============================================================
+# Data Retention Policies
+# ============================================================
+
+retention:
+  
+  default_retention_days: 365
+  
+  policies:
+    - name: "Audit Logs"
+      data_type: "audit_log"
+      retention_days: 730
+      auto_delete: false
+      archive_after_days: 365
+      
+    - name: "Query History"
+      data_type: "query_log"
+      retention_days: 180
+      auto_delete: true
+      
+    - name: "Vector Embeddings"
+      data_type: "vector_embedding"
+      retention_days: 365
+      auto_delete: false
+      
+    - name: "Billing Records"
+      data_type: "billing"
+      retention_days: 2555  # 7 years
+      auto_delete: false
+      archive_after_days: 365
+      
+    - name: "Temporary Files"
+      data_type: "temp_file"
+      retention_days: 7
+      auto_delete: true
+      
+    - name: "Backup Files"
+      data_type: "backup"
+      retention_days: 30
+      auto_delete: true
+
+# ============================================================
+# Compliance Frameworks
+# ============================================================
+
+compliance:
+  
+  frameworks:
+    - name: "GDPR"
+      enabled: true
+      requirements:
+        - "right_to_access"
+        - "right_to_erasure"
+        - "data_portability"
+        - "consent_management"
+        - "breach_notification"
+      
+    - name: "SOC2"
+      enabled: true
+      requirements:
+        - "access_controls"
+        - "audit_logging"
+        - "encryption"
+        - "availability"
+        - "confidentiality"
+      
+    - name: "ISO27001"
+      enabled: false
+      requirements:
+        - "risk_assessment"
+        - "asset_management"
+        - "access_control"
+        - "cryptography"
+        - "incident_management"
+      
+    - name: "HIPAA"
+      enabled: false
+      requirements:
+        - "phi_protection"
+        - "access_controls"
+        - "audit_controls"
+        - "transmission_security"
+
+# ============================================================
+# Encryption Policies
+# ============================================================
+
+encryption:
+  
+  at_rest:
+    enabled: true
+    algorithm: "AES-256-GCM"
+    key_rotation_days: 90
+    
+  in_transit:
+    enabled: true
+    protocol: "TLS 1.3"
+    min_protocol: "TLS 1.2"
+    
+  database:
+    encrypt_vector_db: true
+    encrypt_knowledge_graph: true
+    encrypt_warehouse: true
+    
+  files:
+    encrypt_uploaded_files: true
+    encrypt_backups: true
+
+# ============================================================
+# Audit and Monitoring
+# ============================================================
+
+audit:
+  
+  log_events:
+    - "user_login"
+    - "user_logout"
+    - "query_execution"
+    - "data_ingestion"
+    - "model_invocation"
+    - "data_access"
+    - "configuration_change"
+    - "role_change"
+    - "failed_access_attempt"
+    - "cross_division_request"
+    - "pii_detection"
+    - "policy_violation"
+  
+  alert_conditions:
+    - name: "Multiple Failed Logins"
+      condition: "failed_login_count > 5 in 15 minutes"
+      severity: "high"
+      
+    - name: "Cross-Division Access Attempt"
+      condition: "unauthorized_division_access"
+      severity: "critical"
+      
+    - name: "Unusual Data Volume"
+      condition: "data_query_volume > normal * 10"
+      severity: "medium"
+      
+    - name: "PII Exposure"
+      condition: "pii_in_response without authorization"
+      severity: "critical"
+
+# ============================================================
+# Default Security Settings
+# ============================================================
+
+defaults:
+  default_role: "viewer"
+  require_mfa: false
+  password_expiry_days: 90
+  session_timeout_minutes: 60
+  max_login_attempts: 5
+  lockout_duration_minutes: 30

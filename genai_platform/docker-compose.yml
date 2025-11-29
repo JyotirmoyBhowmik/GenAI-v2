@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  genai-platform:
+    build: .
+    container_name: genai_platform
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./backups:/app/backups
+      - ./config:/app/config
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - GENAI_PLATFORM_ENV=production
+    restart: unless-stopped
+    networks:
+      - genai-network
+
+  # Optional: Add vector DB service
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: genai_chromadb
+    ports:
+      - "8001:8000"
+    volumes:
+      - chroma_data:/chroma/chroma
+    environment:
+      - IS_PERSISTENT=TRUE
+    networks:
+      - genai-network
+
+  # Optional: Add Neo4j for knowledge graph
+  neo4j:
+    image: neo4j:latest
+    container_name: genai_neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      - NEO4J_AUTH=neo4j/password123
+    volumes:
+      - neo4j_data:/data
+    networks:
+      - genai-network
+
+volumes:
+  chroma_data:
+  neo4j_data:
+
+
+networks:
+  genai-network:
+    driver: bridge
