@@ -58,24 +58,26 @@ class MainWindow(QMainWindow):
         # Create top area (left + center panels)
         top_splitter = QSplitter(Qt.Orientation.Horizontal)
         
-        # Left control panel
+        # Left control panel (thin)
         self.left_panel = LeftControlPanel()
-        self.left_panel.setMinimumWidth(300)
-        self.left_panel.setMaximumWidth(400)
+        self.left_panel.setMinimumWidth(180)
+        self.left_panel.setMaximumWidth(220)
         
-        # Center chat panel
+        # Center chat panel (thin)
         self.center_panel = CenterChatPanel()
+        self.center_panel.setMinimumWidth(150)
+        self.center_panel.setMaximumWidth(250)
         
         # Add to splitter
         top_splitter.addWidget(self.left_panel)
         top_splitter.addWidget(self.center_panel)
-        top_splitter.setStretchFactor(0, 1)  # Left panel
-        top_splitter.setStretchFactor(1, 3)  # Center panel gets more space
+        top_splitter.setStretchFactor(0, 0)  # Left panel fixed size
+        top_splitter.setStretchFactor(1, 0)  # Center panel fixed size
         
-        # Bottom input panel
+        # Bottom output panel (much bigger)
         self.bottom_panel = BottomInputPanel()
-        self.bottom_panel.setMinimumHeight(120)
-        self.bottom_panel.setMaximumHeight(200)
+        self.bottom_panel.setMinimumHeight(300)
+        self.bottom_panel.setMaximumHeight(1000)
         
         # Add to main layout
         main_layout.addWidget(top_splitter, stretch=1)

@@ -1,4 +1,4 @@
-<!-- GitHub Copilot assistant instructions for contributors and AI agents -->
+<!-- Assistant instructions for contributors and AI agents -->
 # GenAI Platform — Copilot Instructions
 
 This document helps AI coding assistants (Copilot, other agents) be productive in the GenAI Platform codebase.
