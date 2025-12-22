@@ -3,79 +3,79 @@
 # ============================================================
 # GUI Framework
 # ============================================================
-PyQt6==6.6.1
-PyQt6-Charts==6.6.0
-PyQt6-WebEngine==6.6.0
+PyQt6
+PyQt6-Charts
+PyQt6-WebEngine
 
 # ============================================================
 # AI Model SDKs - Cloud
 # ============================================================
-openai>=1.10.0
-google-generativeai>=0.3.2
-anthropic>=0.18.0
+openai
+google-generativeai
+anthropic
 # grok (use OpenAI-compatible API)
 
 # ============================================================
 # AI Model SDKs - Local
 # ============================================================
-ollama>=0.1.6
-sentence-transformers>=2.3.1
-transformers>=4.37.0
-torch>=2.1.0
-tokenizers>=0.15.0
+ollama
+sentence-transformers
+transformers
+torch
+tokenizers
 
 # ============================================================
 # Vector Database
 # ============================================================
-chromadb>=0.4.22
+chromadb
 # Alternative: pinecone-client, weaviate-client
 
 # ============================================================
 # Knowledge Graph
 # ============================================================
-networkx>=3.2.1
-matplotlib>=3.8.2
+networkx
+matplotlib
 # Alternative: neo4j (requires separate installation)
 
 # ============================================================
 # Data Processing & Analysis
 # ============================================================
-pandas>=2.1.4
-numpy>=1.26.3
-openpyxl>=3.1.2
-xlrd>=2.0.1
-python-docx>=1.1.0
-PyPDF2>=3.0.1
-pdfplumber>=0.10.3
-pytesseract>=0.3.10
-Pillow>=10.2.0
+pandas
+numpy
+openpyxl
+xlrd
+python-docx
+PyPDF2
+pdfplumber
+pytesseract
+Pillow
 #python-magic-bin>=0.4.14  # Windows
 #python-magic-bin
 
 # ============================================================
 # Database Clients
 # ============================================================
-sqlalchemy>=2.0.25
-pymysql>=1.1.0
-pyodbc>=5.0.1
-psycopg2-binary>=2.9.9
-pyhive>=0.7.0
+sqlalchemy
+pymysql
+pyodbc
+psycopg2-binary
+pyhive
 
 # ============================================================
 # Cloud Connectors
 # ============================================================
 # Microsoft (SharePoint, OneDrive, Outlook)
-msal>=1.26.0
-msgraph-core>=1.0.0
-Office365-REST-Python-Client>=2.5.7
+msal
+msgraph-core
+Office365-REST-Python-Client
 
 # Google (Gmail, Drive)
-google-auth>=2.27.0
-google-auth-oauthlib>=1.2.0
-google-api-python-client>=2.115.0
+google-auth
+google-auth-oauthlib
+google-api-python-client
 
 # Salesforce
-simple-salesforce>=1.12.5
+simple-salesforce
 
 # Zoho
 #zoho-crm>=2.1.0
@@ -83,68 +83,68 @@ simple-salesforce>=1.12.5
 # ============================================================
 # Security & Encryption
 # ============================================================
-cryptography>=42.0.0
-pyjwt>=2.8.0
-passlib>=1.7.4
-bcrypt>=4.1.2
-python-dotenv>=1.0.0
+cryptography
+pyjwt
+passlib
+bcrypt
+python-dotenv
 
 # ============================================================
 # Web & API
 # ============================================================
-requests>=2.31.0
-httpx>=0.26.0
-fastapi>=0.109.0
-uvicorn>=0.27.0
-pydantic>=2.5.3
+requests
+httpx
+fastapi
+uvicorn
+pydantic
 
 # ============================================================
 # Data Validation & Schema
 # ============================================================
-jsonschema>=4.20.0
-marshmallow>=3.20.1
-pydantic-settings>=2.1.0
+jsonschema
+marshmallow
+pydantic-settings
 
 # ============================================================
 # Logging & Monitoring
 # ============================================================
-loguru>=0.7.2
-python-json-logger>=2.0.7
+loguru
+python-json-logger
 
 # ============================================================
 # Utilities
 # ============================================================
-python-dateutil>=2.8.2
-pytz>=2024.1
-pyyaml>=6.0.1
-toml>=0.10.2
-click>=8.1.7
-tqdm>=4.66.1
+python-dateutil
+pytz
+pyyaml
+toml
+click
+tqdm
 
 # ============================================================
 # Testing
 # ============================================================
-pytest>=7.4.4
-pytest-cov>=4.1.0
-pytest-asyncio>=0.23.3
-pytest-mock>=3.12.0
-pytest-qt>=4.3.1
+pytest
+pytest-cov
+pytest-asyncio
+pytest-mock
+pytest-qt
 
 # ============================================================
 # Development Tools
 # ============================================================
-black>=24.1.0
-flake8>=7.0.0
-mypy>=1.8.0
-isort>=5.13.2
+black
+flake8
+mypy
+isort
 
 # ============================================================
 # NLP & Text Processing
 # ============================================================
-spacy>=3.7.2
-nltk>=3.8.1
-langchain>=0.1.1
-langchain-community>=0.0.13
+spacy
+nltk
+langchain
+langchain-community
 
 # ============================================================
 # OCR Dependencies
@@ -156,16 +156,16 @@ langchain-community>=0.0.13
 # ============================================================
 # Visualization
 # ============================================================
-plotly>=5.18.0
-seaborn>=0.13.1
+plotly
+seaborn
 
 # ============================================================
 # PDF Generation
 # ============================================================
-reportlab>=4.0.9
-fpdf2>=2.7.7
+reportlab
+fpdf2
 
 # ============================================================
 # Email Processing
 # ============================================================
-email-validator>=2.1.0
+email-validator

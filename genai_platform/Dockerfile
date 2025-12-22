@@ -1,6 +1,6 @@
 # GenAI Platform - Docker Deployment
 
-FROM python:3.10-slim
+FROM python:3.14-slim
 
 LABEL maintainer="GenAI Platform Team"
 LABEL description="Enterprise AI Orchestration Platform"

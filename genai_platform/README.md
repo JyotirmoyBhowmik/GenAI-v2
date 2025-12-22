@@ -69,7 +69,8 @@ Enterprise-grade GenAI orchestration platform with multi-division architecture, 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Python 3.10 or higher
+- Python 3.14 or higher
+  > **Note**: Python 3.14 is experimental. Many packages (like `numpy`) may not have pre-built wheels, requiring **Microsoft Visual C++ 14.0 or greater** to build from source.
 - Ollama (for local models) - optional
 - Tesseract OCR - optional for PDF OCR
 

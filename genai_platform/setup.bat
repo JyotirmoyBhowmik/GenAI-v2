@@ -11,7 +11,7 @@ echo Step 1: Installing Python dependencies...
 echo This may take a few minutes...
 echo.
 
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 
 if %ERRORLEVEL% NEQ 0 (
     echo.
